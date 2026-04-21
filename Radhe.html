@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sneha ❤️</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+<style>
+body { background:#0c0a09; color:white; overflow:hidden; font-family:sans-serif; }
+.step { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(.95); opacity:0; transition:.6s; }
+.step.active { opacity:1; transform:translate(-50%,-50%) scale(1); }
+.btn { background:linear-gradient(90deg,#ec4899,#f43f5e); padding:12px 25px; border-radius:30px; }
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bg-music" loop>
+<source src="your-music.mp3" type="audio/mpeg">
+</audio>
+
+<div id="app">
+
+<!-- STEP 1 -->
+<div id="step1" class="step active text-center">
+<h1 class="text-4xl font-bold mb-4">Hey Ms Sneha Balram Pandit ❤️</h1>
+<p class="mb-6">I made something special just for you...</p>
+<button id="start-btn" class="btn">Start</button>
+</div>
+
+<!-- STEP 2 -->
+<div id="step2" class="step text-center">
+<h2 class="text-4xl mb-4">Happy Birthday Sneha 🎉</h2>
+<p class="mb-6">You make the world brighter just by existing.</p>
+<button onclick="nextStep()" class="btn">Next</button>
+</div>
+
+<!-- STEP 3 -->
+<div id="step3" class="step text-center">
+<h2 class="text-3xl mb-4">What I Love About You 💖</h2>
+<p>• Your smile 😊</p>
+<p>• Your kindness ✨</p>
+<p>• Your vibe 🌸</p>
+<button onclick="nextStep()" class="btn mt-6">Next</button>
+</div>
+
+<!-- STEP 4 -->
+<div id="step4" class="step text-center">
+<h2 class="text-3xl mb-4">Our Memory 📸</h2>
+
+<img src="https://via.placeholder.com/300" class="rounded-lg mb-4">
+
+<p>Every moment with you feels special ❤️</p>
+<button onclick="nextStep()" class="btn mt-6">Next</button>
+</div>
+
+<!-- STEP 5 -->
+<div id="step5" class="step text-center">
+<h2 class="text-3xl mb-4">My Wish 🎂</h2>
+
+<p>May your life be filled with happiness, success, and love ❤️</p>
+
+<p id="typed-text" class="mt-4 text-pink-400 font-bold"></p>
+
+<button id="confetti-btn" class="btn mt-6">Celebrate 🎉</button>
+</div>
+
+<!-- STEP 6 (NEW FINAL) -->
+<div id="step6" class="step text-center">
+<h2 class="text-3xl mb-4">One More Thing...</h2>
+
+<p>
+I don’t know what the future holds…<br><br>
+But meeting you was one of the best things that ever happened to me ❤️
+</p>
+
+<button onclick="alert('That smile is my favorite thing ❤️')" class="btn mt-6">
+Click if you're smiling 😊
+</button>
+</div>
+
+</div>
+
+<script>
+let currentStep = 1;
+const totalSteps = 6;
+
+function showStep(n){
+document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+document.getElementById('step'+n).classList.add('active');
+}
+
+function nextStep(){
+if(currentStep < totalSteps){
+currentStep++;
+showStep(currentStep);
+navigator.vibrate?.(50);
+}
+}
+
+document.getElementById('start-btn').onclick = ()=>{
+document.getElementById('bg-music').play();
+nextStep();
+};
+
+// TYPING EFFECT
+new Typed("#typed-text", {
+strings: ["Happy Birthday Sneha ❤️", "You mean a lot to me 💖"],
+typeSpeed: 50,
+backSpeed: 25,
+loop: false
+});
+
+// CONFETTI
+document.getElementById('confetti-btn').onclick = ()=>{
+confetti({ particleCount:200, spread:100 });
+setTimeout(()=> nextStep(),1500);
+};
+</script>
+
+</body>
+</html>
